@@ -25,17 +25,17 @@ import java.time.format.DateTimeFormatter;
 public class RedisConfig {
     @Bean("redisTemplate")
     public RedisTemplate<String, Object> objectRedisTemplate(RedisConnectionFactory factory) {
-//        GenericJackson2JsonRedisSerializer jackson2JsonRedisSerializer = getGenericJackson2JsonRedisSerializer();
+        GenericJackson2JsonRedisSerializer jackson2JsonRedisSerializer = getGenericJackson2JsonRedisSerializer();
 
-        GenericFastJsonRedisSerializer fastJsonRedisSerializer = new GenericFastJsonRedisSerializer();
+//        GenericFastJsonRedisSerializer fastJsonRedisSerializer = new GenericFastJsonRedisSerializer();
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
 
         template.afterPropertiesSet();
         template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(fastJsonRedisSerializer);
+        template.setValueSerializer(new StringRedisSerializer());
         template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(fastJsonRedisSerializer);
+        template.setHashValueSerializer(new StringRedisSerializer());
         return template;
     }
 
