@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: DemoApp
+  jpa:
+    database: MYSQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: ${MYSQL_URL_SLAVE:jdbc:mysql://13.251.44.46:3306/test?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8}
+    username: ${MYSQL_USERNAME_SLAVE:root}
+    password: ${MYSQL_PASSWORD_SLAVE:hhex12345678}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: ${REDIS_HOST:13.251.44.46}
+    database: ${REDIS_DB:3}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_AUTH:hhex112233445566}
+    ssl: ${REDIS_SSL:false}
+    lettuce:
+      pool:
+        max-active: 1000  # ????????????????????
+        max-wait: -1   # ???????????????????????
+        max-idle: 10      # ???????????
+        min-idle: 5       # ???????????
+
+
